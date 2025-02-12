@@ -17,7 +17,7 @@ export function MessageList() {
               {gameMode === 'gestures' && '👋 Use gestures to communicate!'}
             </p>
             <p className="text-sm text-gray-600">
-              Category: {currentChallenge.category} | Difficulty: {currentChallenge.difficulty}
+              Category: {currentChallenge.category} | Difficulty: {currentChallenge.difficulty} | Word: {currentChallenge.word}
             </p>
           </div>
         </div>
@@ -25,26 +25,24 @@ export function MessageList() {
 
       {gameMode === 'drawing' && <DrawingCanvas />}
       {gameMode === 'gestures' && <GestureRecognition />}
-      
+
       {messages.map((message) => (
         <div
           key={message.id}
-          className={`flex ${
-            message.sender === 'player' ? 'justify-end' : 'justify-start'
-          }`}
+          className={`flex ${message.sender === 'player' ? 'justify-end' : 'justify-start'
+            }`}
         >
           <div
-            className={`max-w-[70%] rounded-lg p-3 ${
-              message.type === 'system'
+            className={`max-w-[70%] rounded-lg p-3 ${message.type === 'system'
                 ? 'bg-yellow-100 text-center w-full'
                 : message.type === 'guess'
-                ? message.isCorrect
-                  ? 'bg-green-500 text-white'
-                  : 'bg-red-500 text-white'
-                : highContrast
-                ? 'bg-white border-2 border-black text-black'
-                : 'bg-gray-200 text-gray-800'
-            }`}
+                  ? message.isCorrect
+                    ? 'bg-green-500 text-white'
+                    : 'bg-red-500 text-white'
+                  : highContrast
+                    ? 'bg-white border-2 border-black text-black'
+                    : 'bg-gray-200 text-gray-800'
+              }`}
           >
             <p className={`text-lg ${highContrast ? 'font-bold' : ''}`}>
               {message.text}
